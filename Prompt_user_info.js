@@ -1,9 +1,9 @@
 function Name (str) {
-  this.nam = str;
+  this.userName = str;
 };
 
 Name.prototype.validate = function () {
-  if((!this.nam) || (this.nam == " ") || (this.nam == "  ")) {
+  if((!this.userName) || (this.userName == " ") || (this.userName == "  ")) {
     alert("Name cannot be empty");
     return false;
   }
@@ -11,8 +11,8 @@ Name.prototype.validate = function () {
 };
 
 Name.prototype.displayResult = function(LastName) {
-  alert("Hello " + this.nam + " " + LastName.nam);
-  document.write("Hello " + this.nam + " " + LastName.nam);
+  alert("Hello " + this.userName + " " + LastName.userName);
+  document.write("Hello " + this.userName + " " + LastName.userName);
 };
 
 function createNames (str) {
@@ -20,18 +20,15 @@ function createNames (str) {
 }
 
 window.onload = function(e) {
-  var result = "";
   fname = prompt("Enter first Name");
   firstname = createNames(fname);
-  result = firstname.validate();
-  if (!result) {
+  if (!firstname.validate()) {
     alert("Please Fill the details again");
     return;
   }
   lname = prompt("Enter Last Name");
   lastname = createNames(lname);
-  result = lastname.validate();
-  if (!result) {
+  if (!lastname.validate()) {
     alert("Please Fill the details again");
     return;
   }  
