@@ -1,9 +1,20 @@
-function Name (str) {
-  this.userName = str;
+function Name () {
+  this.firstName = this.promptForName("Enter first name");
+  this.lastName = this.promptForName("Enter last name");
 };
 
-Name.prototype.validate = function () {
-  if((!this.userName) || (this.userName == " ") || (this.userName == "  ")) {
+Name.prototype.promptForName = function(str) {
+  var currentName = prompt(str);
+  if (!this.validate(currentName)) {
+    document.reload();
+  }
+  else {
+    return currentName;
+  }
+};
+
+Name.prototype.validate = function (currentName) {
+  if((!currentName) || (currentName == " ") || (currentName == "  ")) {
     alert("Name cannot be empty");
     return false;
   }
@@ -11,26 +22,11 @@ Name.prototype.validate = function () {
 };
 
 Name.prototype.displayResult = function(LastName) {
-  alert("Hello " + this.userName + " " + LastName.userName);
-  document.write("Hello " + this.userName + " " + LastName.userName);
+  alert("Hello " + this.firstName + " " + this.lastName);
+  document.write("Hello " + this.firstName + " " + this.lastName);
 };
 
-function createNames (str) {
-  return new Name(str);    
+window.onload = function() {
+  var name = new Name();
+  name.displayResult();
 }
-
-window.onload = function(e) {
-  fname = prompt("Enter first Name");
-  firstname = createNames(fname);
-  if (!firstname.validate()) {
-    alert("Please Fill the details again");
-    return;
-  }
-  lname = prompt("Enter Last Name");
-  lastname = createNames(lname);
-  if (!lastname.validate()) {
-    alert("Please Fill the details again");
-    return;
-  }  
-  firstname.displayResult(lastname);
-}  
